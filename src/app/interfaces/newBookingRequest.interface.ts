@@ -6,5 +6,5 @@ export interface NewBookingRequest{
     patientName:string
     gender:Gender
     bookingTime:number
-    doctorSpecialization:DoctorSpecialization
+    doctorId:number
 }

@@ -46,12 +46,15 @@ export class LoginComponent implements OnInit {
       this.loginUserService.getUserRoleFromToken().subscribe({
         next:(userRole:UserRoleResponse) =>{
           if(userRole.role === "ADMIN"){
+            this.userLoginForm.reset;
             this.router.navigate(["/admin-dashboard"])
           }
           else if(userRole.role === "USER"){
+            this.userLoginForm.reset;
             this.router.navigate(["/user-dashboard"])
           }
           else if(userRole.role === "DOCTOR"){
+            this.userLoginForm.reset;
             this.router.navigate(["/doctor-dashboard"])
           }
         },

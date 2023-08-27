@@ -14,7 +14,7 @@
                                 <form id="email-form" [formGroup]="newUserRegistrationForm" (ngSubmit)="onSubmit()">
                                     <div class="form-item">
                                         <label class="form-label" for="name">Full Name</label>
-                                        <input id="name" placeholder="Name" name="name" formControlName="name"
+                                        <input class="form-field" id="name" placeholder="Name" name="name" formControlName="name" 
                                         placeholder="what is your name ?">
                                         <div
                                             *ngIf="newUserRegistrationForm.get('name')?.invalid && newUserRegistrationForm.get('name')?.touched">
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-item">
                                         <label class="form-label" for="age">Age</label>
-                                        <input id="age" name="age"  placeholder="age" formControlName="age">
+                                        <input class="form-field" id="age" name="age"  placeholder="age" formControlName="age">
                                         <div
                                             *ngIf="newUserRegistrationForm.get('age')?.invalid && newUserRegistrationForm.get('age')?.touched">
                                             <div *ngIf="newUserRegistrationForm.get('age')?.hasError('required')">Age
@@ -64,10 +64,21 @@
                                         </label>
                                     </div>
                                     <br>
-                                
+                                    <div class="form-item">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input class="form-field" type="email" id="email" formControlName="email"
+                                            placeholder="Enter your email">
+                                        <div
+                                            *ngIf="newUserRegistrationForm.get('email')?.invalid && newUserRegistrationForm.get('email')?.touched">
+                                            <div *ngIf="newUserRegistrationForm.get('email')?.hasError('required')">Email is required
+                                            </div>
+                                            <div *ngIf="newUserRegistrationForm.get('email')?.hasError('email')">Invalid email format
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-item">
                                         <label class="form-label" for="username">username</label>
-                                        <input id="username" name="username" type="text" placeholder="username" formControlName="username">
+                                        <input class="form-field" id="username" name="username" type="text" placeholder="username" formControlName="username">
                                         <div
                                             *ngIf="newUserRegistrationForm.get('username')?.invalid && newUserRegistrationForm.get('username')?.touched">
                                             <div *ngIf="newUserRegistrationForm.get('username')?.hasError('required')">
@@ -77,7 +88,7 @@
                                     </div>
                                     <div class="form-item">
                                         <label class="form-label" for="password">password</label>
-                                        <input id="password" name="password" type="password" placeholder="enter password"
+                                        <input class="form-field" id="password" name="password" type="password" placeholder="enter password"
                                         formControlName="password">
                                         <div
                                             *ngIf="newUserRegistrationForm.get('password')?.invalid && newUserRegistrationForm.get('password')?.touched">
@@ -93,7 +104,7 @@
                                     <br>
                                     <div class="form-item">
                                         <button class="btn btn-purple" type="submit"
-                                            [disabled]="newUserRegistrationForm.invalid">Submit</button>
+                                           [disabled]="newUserRegistrationForm.invalid">Submit</button>
                                     </div>
                                 </form>
                             </div>

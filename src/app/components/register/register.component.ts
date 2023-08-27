@@ -41,17 +41,15 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
     });
   }
-  // this happens when we submit the form
   onSubmit() {
-    if(this.newUserRegistrationForm?.valid){
       const newUser:NewUserRequest = this.newUserRegistrationForm!.value;
       console.log(newUser);      
       // used to get and store any navigator related information and store it in the attr
-      // const clientInfo={
-      //  language:this.getBrowserLanguage()
-      // }
-      // newUser.attr = [JSON.stringify(clientInfo)];
-      newUser.attr=["hello"];
+      const clientInfo={
+       language:this.getBrowserLanguage()
+      }
+      newUser.attr = [JSON.stringify(clientInfo)];
+      newUser.attr=[];
       console.log(newUser);
       this.registerUserService.registerUser(newUser).subscribe({
         next: (newUserResponse:NewUserResponse)=> {
@@ -64,9 +62,8 @@ export class RegisterComponent implements OnInit {
         }
       });
       this.newUserRegistrationForm.reset;
-  }
 }
   private getBrowserLanguage():string{
-    return "hello";
+    return "Hello";
   }
 }
