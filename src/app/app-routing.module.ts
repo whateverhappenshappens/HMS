@@ -12,8 +12,8 @@ const routes: Routes = [
   {path:'',redirectTo:'emh',pathMatch:"full"},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  { path: 'admin-dashboard',component:AdminComponent},
-  { path: 'booking', loadChildren: () => import('./module/booking/booking.module').then(m => m.BookingModule) },
+  {path: 'admin-dashboard',component:AdminComponent},
+  {path: 'booking', loadChildren: () => import('./module/booking/booking.module').then(m => m.BookingModule) },
   {path:"doctor-dashboard",component:DoctorComponent},
   {path:"user-dashboard",component:UserComponent},
 ];

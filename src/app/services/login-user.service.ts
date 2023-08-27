@@ -20,6 +20,9 @@ constructor(private http: HttpClient) {}
     return this.http.post<LoginResponse>(this.apiUrl,null,{headers});
     
   }
+  logout(){
+    sessionStorage.removeItem('token');
+  }
   getUserRoleFromToken():Observable<UserRoleResponse>{
     const headers = new HttpHeaders({
     'xHmAuthToken': sessionStorage.getItem('token') ?? ''

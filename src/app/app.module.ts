@@ -21,6 +21,7 @@ import { BookingModule } from './module/booking/booking.module';
 import { DoctorService } from './services/doctor.service';
 import { NewBookingService } from './services/new-booking.service';
 import { SharedModule } from './shared/shared.module';
+import { BookingService } from './services/booking.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
 
   ],
-  providers: [RegisterUserService,AuthService,LoginUserService,DoctorService,NewBookingService],
+  providers: [RegisterUserService,AuthService,LoginUserService,DoctorService,NewBookingService,BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
