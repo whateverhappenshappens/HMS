@@ -296,3 +296,10 @@ input::placeholder {
     background-color: #9d84ff;
     cursor: pointer;
 }
+.registerLink{
+    border : 1px solid;
+    border-color: #9d84ff;
+    opacity: 50%;
+    font-size: 0.2rem;
+    color: #999;
+}

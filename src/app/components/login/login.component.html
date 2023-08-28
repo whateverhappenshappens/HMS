@@ -14,7 +14,8 @@
                                 <form id="email-form" [formGroup]="userLoginForm" (ngSubmit)="loginOnSubmit()">
                                     <div class="form-item">
                                         <label class="form-label" for="username">username</label>
-                                        <input class="form-field" id="username" name="username" type="text" placeholder="username" formControlName="username">
+                                        <input class="form-field" id="username" name="username" type="text"
+                                            placeholder="username" formControlName="username">
                                         <div
                                             *ngIf="userLoginForm.get('username')?.invalid && userLoginForm.get('username')?.touched">
                                             <div *ngIf="userLoginForm.get('username')?.hasError('required')">
@@ -24,16 +25,17 @@
                                     </div>
                                     <div class="form-item">
                                         <label class="form-label" for="password">password</label>
-                                        <input class="form-field" id="password" name="password" type="password" placeholder="enter password"
-                                            formControlName="password">
+                                        <input class="form-field" id="password" name="password" type="password"
+                                            placeholder="enter password" formControlName="password">
                                         <div
                                             *ngIf="userLoginForm.get('password')?.invalid && userLoginForm.get('password')?.touched">
                                             <div *ngIf="userLoginForm.get('password')?.hasError('required')">
                                                 enter a password
                                             </div>
-                                            <div *ngIf="userLoginForm.get('password')?.hasError('minlength') && userLoginForm.get('password')?.touched">
+                                            <div
+                                                *ngIf="userLoginForm.get('password')?.hasError('minlength') && userLoginForm.get('password')?.touched">
                                                 Password length should be greater than 6
-                                              </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
@@ -41,6 +43,8 @@
                                         <button class="btn btn-purple" type="submit"
                                             [disabled]="userLoginForm.invalid">Login</button>
                                     </div>
+                                    <button class="btn btn-purple registerLink" type="submit"
+                                        routerLink="/register">register an account</button>
                                 </form>
                             </div>
                         </div>

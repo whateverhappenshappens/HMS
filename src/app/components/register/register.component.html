@@ -106,6 +106,8 @@
                                         <button class="btn btn-purple" type="submit"
                                            [disabled]="newUserRegistrationForm.invalid">Submit</button>
                                     </div>
+                                    <button class="btn btn-purple registerLink" type="submit" routerLink="/register"
+                                         *ngIf="showRegisterToLinkButton"  >go to login</button>
                                 </form>
                             </div>
                         </div>

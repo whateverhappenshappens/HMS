@@ -22,15 +22,17 @@ import { DoctorService } from './services/doctor.service';
 import { NewBookingService } from './services/new-booking.service';
 import { SharedModule } from './shared/shared.module';
 import { BookingService } from './services/booking.service';
+import { AccountService } from './services/account.service';
 @NgModule({
   declarations: [
     AppComponent,
     HeroComponent,
-    LoginComponent,
     RegisterComponent,
+    DoctorComponent,
     AdminComponent,
     UserComponent,
-    DoctorComponent,
+    LoginComponent
+  
   
   ],
   imports: [
@@ -44,10 +46,11 @@ import { BookingService } from './services/booking.service';
     RouterModule.forRoot([]),
     RouterModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    BookingModule
 
   ],
-  providers: [RegisterUserService,AuthService,LoginUserService,DoctorService,NewBookingService,BookingService],
+  providers: [RegisterUserService,AuthService,LoginUserService,DoctorService,NewBookingService,BookingService,AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

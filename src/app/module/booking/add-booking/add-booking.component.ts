@@ -4,6 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { DoctorSpecialization } from 'src/app/enums/DoctorSpecialization.enum';
 import { Gender } from 'src/app/enums/gender.enum';
 import { Doctor } from 'src/app/interfaces/Doctor.interface';
+import { NewBookingRequest } from 'src/app/interfaces/newBookingRequest.interface';
+import { NewBookingResponse } from 'src/app/interfaces/newBookingResponse.interface';
+import { BookingService } from 'src/app/services/booking.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { NewBookingService } from 'src/app/services/new-booking.service';
 
@@ -29,12 +32,15 @@ function validAge(): ValidatorFn {
   styleUrls: ['./add-booking.component.css']
 })
 export class AddBookingComponent implements OnInit {
+
   doctorSpecializations: string[];
   selectedSpecialization!: string;
   newBookingRequestForm!:FormGroup;
   doctors: Doctor[] = [];
   genders = Object.values(Gender);
-  constructor(private fb:FormBuilder,private newBooking:NewBookingService,private toastr:ToastrService,private newDoctor:DoctorService){
+  newBookingRequest!:NewBookingRequest
+  newBookingResponse!:NewBookingResponse
+  constructor(private fb:FormBuilder,private bookingService:BookingService,private toastr:ToastrService,private newDoctor:DoctorService){
     this.doctorSpecializations = this.getDoctorSpecializationStrings();
   }
   ngOnInit(): void {
@@ -45,7 +51,6 @@ export class AddBookingComponent implements OnInit {
       gender: ['', Validators.required],
       doctorId: ['', Validators.required],
       doctorSpecialization:['',Validators.required]
-
     });
   }
   
@@ -67,7 +72,30 @@ export class AddBookingComponent implements OnInit {
     });
   }
   }
-  // selectedDoctor = this.newBookingRequestForm.get('doctorId')?.value;
+  createBooking() {
+
+  console.log("hiii")
+      // takes value taken as input from form
+    this.newBookingRequest = this.newBookingRequestForm.value;
+    // takes in the doctorId value form the form so that newBookingRequest field can be set
+    const selectedDoctor = this.newBookingRequestForm.get('doctorId')?.value;
+    this.newBookingRequest.doctorId=selectedDoctor
+    // takes in date-time from user then its converted to long timestamp to send to backend
+    const selectedDate = new Date(this.newBookingRequestForm.value.bookingTime);
+    const timestamp = selectedDate.getTime();
+    this.newBookingRequest.bookingTime=timestamp;
+
+    this.bookingService.createNewBooking(this.newBookingRequest).subscribe({
+      next:(response:NewBookingResponse)=>{
+        this.newBookingResponse=response;
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    });
+    this.newBookingRequestForm.reset;
+  }
+
 
 
 }

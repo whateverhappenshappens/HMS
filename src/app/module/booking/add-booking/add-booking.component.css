@@ -250,7 +250,7 @@ h3 {
 main {
     flex-grow: 1;
     position: relative;
-    overflow: hidden;
+    overflow:scroll;
 }
 
 
@@ -361,3 +361,20 @@ input::placeholder {
     background-color: #9d84ff;
     cursor: pointer;
 }
+.booking-table {
+    width: 100%; /* Set the table width to fill the container */
+    border-collapse: collapse; /* Merge table cell borders */
+  }
+  
+  .booking-table th, .booking-table td {
+    padding: 10px; /* Add padding for better spacing */
+    text-align: left; /* Align text to the left within cells */
+    border: 1px solid #9d84ff; 
+    color: #999;
+    /* Add cell borders for better separation */
+  }
+  
+  .booking-table th {
+      /* Header background color */
+      color:#999
+  }
