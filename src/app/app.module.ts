@@ -23,6 +23,7 @@ import { NewBookingService } from './services/new-booking.service';
 import { SharedModule } from './shared/shared.module';
 import { BookingService } from './services/booking.service';
 import { AccountService } from './services/account.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { AccountService } from './services/account.service';
     DoctorComponent,
     AdminComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   
   
   ],
@@ -42,7 +44,11 @@ import { AccountService } from './services/account.service';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000, // Time in milliseconds to close the toastr automatically
+      positionClass: 'toast-top-right', // Position of the toastr
+      preventDuplicates: true, // Prevent duplicate toasts
+    }),
     RouterModule.forRoot([]),
     RouterModule,
     FormsModule,

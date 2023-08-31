@@ -19,5 +19,22 @@ export class AccountService {
       console.log(result);
       return result;
   }
-
+  reactivateAccount(userId:number):Observable<boolean>{
+    const headers = new HttpHeaders({
+      'xHmAuthToken': sessionStorage.getItem('token') ?? ''
+      });
+      const url = `${this.baseUrl}user/${userId}/reactivate-user`;
+      var result= this.http.put<boolean>(url,userId,{headers}) 
+      console.log(result);
+      return result;
+  }
+  blockUserAccount(userId:number):Observable<boolean>{
+    const headers = new HttpHeaders({
+      'xHmAuthToken': sessionStorage.getItem('token') ?? ''
+      });
+      const url = `${this.baseUrl}user/${userId}/block-user`;
+      var result= this.http.put<boolean>(url,userId,{headers}) 
+      console.log(result);
+      return result;
+  }
 }

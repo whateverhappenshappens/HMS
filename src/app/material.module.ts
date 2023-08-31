@@ -13,6 +13,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule } from "@angular/material/divider";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDrawer, MatDrawerContainer, MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -31,6 +34,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
        MatDividerModule,
        MatButtonModule,
        MatToolbarModule,
+       MatSidenavModule,
+       MatMenuModule,
+       MatIconModule,
+
     ]
 })
 
