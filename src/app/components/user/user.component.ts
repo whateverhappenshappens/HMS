@@ -20,10 +20,15 @@ export class UserComponent {
     const userId=Number(sessionStorage.getItem("UID"))
     this.accountService.deactivateUserAccount(userId).subscribe({
       next:(response:boolean)=>{
-        
+        if(response==true){
+          console.log("deactivated");
+        }
+      },error:(error)=>{
+        console.log("couldnt deactivate account",error);
       }
     });
     }
+   
 
 
 }

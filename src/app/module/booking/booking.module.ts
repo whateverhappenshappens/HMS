@@ -10,6 +10,9 @@ import { MaterialModule } from 'src/app/material.module';
 import { UserDetailsByIdComponent } from './user-details-by-id/user-details-by-id.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { AllBookingByUserComponent } from './all-booking-by-user/all-booking-by-user.component';
+import { ReactivateUserAccountComponent } from './reactivate-user-account/reactivate-user-account.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -19,7 +22,8 @@ import { AllBookingByUserComponent } from './all-booking-by-user/all-booking-by-
     AllBookingByUserIdComponent,
     UserDetailsByIdComponent,
     BookingDetailComponent,
-    AllBookingByUserComponent
+    AllBookingByUserComponent,
+    ReactivateUserAccountComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +33,12 @@ import { AllBookingByUserComponent } from './all-booking-by-user/all-booking-by-
     RouterModule,
     SharedModule,
     MaterialModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, // Time in milliseconds to close the toastr automatically
+      positionClass: 'toast-top-right', // Position of the toastr
+      preventDuplicates: true, // Prevent duplicate toasts
+    }),
   ]
 })
 export class BookingModule { }

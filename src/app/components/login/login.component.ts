@@ -37,40 +37,43 @@ showRegisterToLinkButton: any;
         next: (response:LoginResponse)=> {
           sessionStorage.setItem("token",response.token);
           console.log(sessionStorage.getItem('token'));
+          this.toastr.success("Login Successfull!")
+          this.navigateUser();
         },
         error: (error) => {
-          this.toastr.error('Registration failed!', error);
-          console.log('Registration Failed',error);
+          this.toastr.error('check credentials!');
+          this.toastr.error('Login failed!');
+          this.userLoginForm.reset();
+          console.log('Login Failed',error);
         }
       }
-     );
+     ); 
+    }
+    navigateUser(){
       this.loginUserService.getUserRoleFromToken().subscribe({
-        next:(userRole:UserRoleResponse) =>{
-          if(userRole.role === "ADMIN"){
-            this.userLoginForm.reset;
-            this.router.navigate(["/admin-dashboard"])
-          }
-          else if(userRole.role === "USER"){
-            this.userLoginForm.reset;
-            this.router.navigate(["/user-dashboard"])
-          }
-          else if(userRole.role === "DOCTOR"){
-            this.userLoginForm.reset;
-            this.router.navigate(["/doctor-dashboard"])
-          }
-        },
-        error: (error: { status: number; }) => {
-          console.log(error);
-          if(error.status === 401){
-            console.log("not authorised");
-            this.toastr.error("not authorised");
-            if(sessionStorage.getItem("token")!==null){
-              sessionStorage.removeItem("token");
-              this.router.navigate(["/login"]);
-              this.userLoginForm.reset;
-            }
+      next:(userRole:UserRoleResponse) =>{
+        if(userRole.role === "ADMIN"){
+          this.router.navigate(["/admin-dashboard"])
+        }
+        else if(userRole.role === "USER"){
+          this.router.navigate(["/user-dashboard"])
+        }
+        else if(userRole.role === "DOCTOR"){
+          this.router.navigate(["/doctor-dashboard"])
+        }
+      },
+      error: (error: { status: number; }) => {
+        console.log(error);
+        if(error.status === 401){
+          console.log("not authorised");
+          this.toastr.error("not authorised");
+          if(sessionStorage.getItem("token")!==null){
+            sessionStorage.removeItem("token");
+            this.router.navigate(["/login"]);
+            this.userLoginForm.reset();
           }
         }
-      })
-    }
+      }
+    })
+  }
   }
