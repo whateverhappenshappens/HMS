@@ -18,5 +18,6 @@ export class DashboardComponent {
     this.loginService.loginOnSubmit();
     this.toastr.success()
     this.router.navigate(["emh"]);
+    console.log("heelo");
   }
 }
