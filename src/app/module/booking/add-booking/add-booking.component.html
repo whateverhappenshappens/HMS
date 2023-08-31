@@ -11,7 +11,7 @@
                         </div>
                         <div class="contact-form__wrapper right-column">
                             <div class="contact-form form-wrapper ">
-                                <form id="email-form" [formGroup]="newBookingRequestForm">
+                                <form id="email-form" [formGroup]="newBookingRequestForm" (ngSubmit)="createBooking()">
                                     <div class="form-item">
                                         <label class="form-label" for="patientName">Patient Name</label>
                                         <input class="form-field" id="patientName" name="patientName" type="text"
@@ -63,8 +63,8 @@
                                     <div class="form-item">
                                         <label class="form-label" for="doctorSpecializationList">Choose a
                                             specialization</label>
-                                        <select class="form-field" id="doctorSpecialization" name="doctorSpecializationList"
-                                            (change)="getDoctorsBySpecialization()"
+                                        <select class="form-field" id="doctorSpecialization"
+                                            name="doctorSpecializationList" (change)="getDoctorsBySpecialization()"
                                             formControlName="doctorSpecialization">
                                             <option value="" disabled selected>Select a specialization</option>
                                             <option *ngFor="let specialization of doctorSpecializations"
@@ -73,10 +73,11 @@
                                     </div>
                                     <div class="form-item">
                                         <label class="form-label" for="doctorSelected">Choose a Doctor</label>
-                                        <select class="form-field" id="doctorSelected" name="doctorSelected" formControlName="doctorId">
+                                        <select class="form-field" id="doctorSelected" name="doctorSelected"
+                                            formControlName="doctorId">
                                             <option value="">Select a doctor</option>
                                             <option *ngFor="let doctor of doctors" [value]="doctor.id">
-                                                {{ doctor.id }} {{doctor.doctorName }}, </option>
+                                                {{ doctor.id }} {{doctor.doctorName }} </option>
                                         </select>
                                         <div
                                             *ngIf="newBookingRequestForm.get('doctorId')?.invalid && newBookingRequestForm.get('doctorId')?.touched">
@@ -87,8 +88,8 @@
                                     </div>
                                     <div class="form-item">
                                         <label class="form-label" for="bookingTime">Booking Time</label>
-                                        <input class="form-field" id="bookingTime" name="bookingTime" type="text"
-                                            placeholder="booking time" formControlName="bookingTime">
+                                        <input class="form-field" id="bookingTime" name="bookingTime" type="datetime-local"
+                                            placeholder="DD-MM-YYYY HH:MM" formControlName="bookingTime">
                                         <div
                                             *ngIf="newBookingRequestForm.get('bookingTime')?.invalid && newBookingRequestForm.get('bookingTime')?.touched">
                                             <div *ngIf="newBookingRequestForm.get('bookingTime')?.hasError('required')">
@@ -98,13 +99,44 @@
                                     </div>
                                     <br>
                                     <div class="form-item">
-                                        <label class="form-label" for="bookingTime">Booking Time</label>
-
-                                    </div>
-                                    <br>
-                                    <div class="form-item">
                                         <button class="btn btn-purple" type="submit"
-                                            [disabled]="newBookingRequestForm.invalid">
-                                            Submit
+                                           > Submit
                                         </button>
                                     </div>
+                                </form>
+                                    <div>
+                                        <div *ngIf="newBookingResponse">
+                                            <strong>Booking Successful</strong>
+                                            <table class="booking-table">
+                                                <tr>
+                                                  <th>Field</th>
+                                                  <th>Value</th>
+                                                </tr>
+                                                <tr>
+                                                  <td>Booking ID:</td>
+                                                  <td>{{ newBookingResponse.bookingId }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Patient Name:</td>
+                                                  <td>{{ newBookingResponse.patientName }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Patient Age:</td>
+                                                  <td>{{ newBookingResponse.patientAge }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Doctor Name:</td>
+                                                  <td>{{ newBookingResponse.doctorName }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Booking Time:</td>
+                                                  <td>{{ newBookingResponse.bookingTime | date: 'medium' }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Doctor Specialization:</td>
+                                                  <td>{{ newBookingResponse.doctorSpecialization }}</td>
+                                                </tr>
+                                              </table>
+                                            </div>
+                                    </div>
+                                <!--  [disabled]="newBookingRequestForm.invalid" -->

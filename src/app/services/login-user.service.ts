@@ -21,12 +21,21 @@ constructor(private http: HttpClient) {}
     
   }
   logout(){
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("UID");
+    sessionStorage.removeItem("token")
   }
   getUserRoleFromToken():Observable<UserRoleResponse>{
     const headers = new HttpHeaders({
     'xHmAuthToken': sessionStorage.getItem('token') ?? ''
     });
+    this.http.get<string>("http://localhost:8080/hms/getUid",{headers}).subscribe({
+      next: (respp:string)=>{
+        console.log("fetched uid", respp)
+        sessionStorage.setItem("UID",respp.toString());
+      }
+    })
+    
+    
     var res=this.http.get<UserRoleResponse>("http://localhost:8080/hms/user/getRole",{headers})
     console.log(res);
     return res;

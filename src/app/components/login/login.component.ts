@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
 
   userLoginForm!: FormGroup;
+showRegisterToLinkButton: any;
   constructor(private fb: FormBuilder, private loginUserService: LoginUserService, private toastr: ToastrService, private router: Router) { }
   ngOnInit(): void {
     this.userLoginForm = this.fb.group({

@@ -4,12 +4,14 @@ import { AddBookingComponent } from "./add-booking/add-booking.component";
 import { AllBookingByUserIdComponent } from "./all-booking-by-user-id/all-booking-by-user-id.component";
 import { UserDetailsByIdComponent } from "./user-details-by-id/user-details-by-id.component";
 import { BookingDetailComponent } from "./booking-detail/booking-detail.component";
+import { AllBookingByUserComponent } from "./all-booking-by-user/all-booking-by-user.component";
 
 const routes:Routes = [
     { path: 'add-booking', component: AddBookingComponent },
     {path: 'all-booking-by-id',component:AllBookingByUserIdComponent},
     {path:'all-user-details-by-id',component:UserDetailsByIdComponent},
     {path:'booking-details',component:BookingDetailComponent},
+    {path:'all-booking-by-user',component:AllBookingByUserComponent}
 
 ]
 

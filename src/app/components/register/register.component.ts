@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
  
   newUserRegistrationForm!: FormGroup;
   genders = Object.values(Gender);
+  showRegisterToLinkButton:boolean=false; 
   constructor(private fb:FormBuilder,private registerUserService:RegisterUserService,private toastr:ToastrService){}
   ngOnInit(): void {
     this.newUserRegistrationForm = this.fb.group({
@@ -55,6 +56,8 @@ export class RegisterComponent implements OnInit {
         next: (newUserResponse:NewUserResponse)=> {
           this.toastr.success('Registration successful!', 'Success');
           console.log('Registration Successfull:',newUserResponse);
+          this.newUserRegistrationForm.reset;
+          this.showRegisterToLinkButton=true;
         },
         error: (error: any) => {
           this.toastr.error('Registration failed!', error);

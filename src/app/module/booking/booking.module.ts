@@ -9,6 +9,7 @@ import { AllBookingByUserIdComponent } from './all-booking-by-user-id/all-bookin
 import { MaterialModule } from 'src/app/material.module';
 import { UserDetailsByIdComponent } from './user-details-by-id/user-details-by-id.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { AllBookingByUserComponent } from './all-booking-by-user/all-booking-by-user.component';
 
 
 
@@ -17,7 +18,8 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
     AddBookingComponent,
     AllBookingByUserIdComponent,
     UserDetailsByIdComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    AllBookingByUserComponent
   ],
   imports: [
     CommonModule,
